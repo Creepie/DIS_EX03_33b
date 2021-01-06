@@ -14,35 +14,35 @@ public class EnvData {
      * timestamp saves a timestamp in it
      */
     @XmlElement
-    public long timestamp;
+    public long mTimestamp;
     /**
      * sensortype saves a supported sensortype in it
      */
     @XmlElement
-    public String sensortype;
+    public String mSensortype;
     /**
      * sensorvalues saves one or more sensorvalues in a array list
      */
     @XmlElement
-    public ArrayList<Integer> sensorvalues;
+    public ArrayList<Integer> mSensorvalues;
 
     /**
      * constructor init the sensorvalues array list
      */
     public EnvData(){
-        sensorvalues = new ArrayList<>();
+        mSensorvalues = new ArrayList<>();
     }
 
     /**
      * constructor
-     * @param timestamp represent a timeStamp
-     * @param sensortype represent the sensor type
+     * @param mTimestamp represent a timeStamp
+     * @param mSensortype represent the sensor type
      * @param values represent the value
      */
-    public EnvData(long timestamp, String sensortype, ArrayList<Integer> values) {
-        this.timestamp = timestamp;
-        this.sensortype = sensortype;
-        this.sensorvalues = values;
+    public EnvData(long mTimestamp, String mSensortype, ArrayList<Integer> values) {
+        this.mTimestamp = mTimestamp;
+        this.mSensortype = mSensortype;
+        this.mSensorvalues = values;
     }
 
     /**
@@ -52,9 +52,9 @@ public class EnvData {
     @Override
     public String toString() {
         return "EnvData{" +
-                "timestamp=" + timestamp +
-                ", sensortype='" + sensortype + '\'' +
-                ", values=" + sensorvalues +
+                "timestamp=" + mTimestamp +
+                ", sensortype='" + mSensortype + '\'' +
+                ", values=" + mSensorvalues +
                 '}';
     }
 }

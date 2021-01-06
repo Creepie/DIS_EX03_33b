@@ -9,11 +9,8 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 import java.io.StringWriter;
-import java.rmi.RemoteException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -22,7 +19,7 @@ import java.util.Random;
  */
 @Path("/EnvironmentService")
 public class Environment extends Application {
-    EnvData[] list = new EnvData[2];
+    EnvData[] mList = new EnvData[2];
 
     /**
      * empty constructor is not in use
@@ -68,15 +65,15 @@ public class Environment extends Application {
 
     /**
      * this method is to get a single EnvData object with the given name
-     * @param sensor is the given sensor request
+     * @param _sensor is the given sensor request
      * @return a EnvData object of the given sensor if supported
      */
     @GET
     @Produces({"text/xml"})
     @Path("/{sensor}")
-    public String getBasedEnvData(@PathParam("sensor") String sensor){
-        if (sensor.equals("temperature") || sensor.equals("humidity")){
-            return convertEnvDataToString(requestEnvironmentData(sensor));
+    public String getBasedEnvData(@PathParam("sensor") String _sensor){
+        if (_sensor.equals("temperature") || _sensor.equals("humidity")){
+            return convertEnvDataToString(requestEnvironmentData(_sensor));
         } else {
             return "";
         }
@@ -91,16 +88,16 @@ public class Environment extends Application {
     @Path("/all")
     public String getBasedList(){
         fillList();
-        return "<eberth.Environment>" + convertEnvDataArrayToString(list) + "</eberth.Environment>";
+        return "<eberth.Environment>" + convertEnvDataArrayToString(mList) + "</eberth.Environment>";
     }
 
 
     /**
      * Converts an envData-Array to a xml string and returns the string
-     * @param envArr provides an Array of EnvData
+     * @param _envArr provides an Array of EnvData
      * @return an xml form of an the EnvData array
      */
-    private String convertEnvDataArrayToString(EnvData[] envArr){
+    private String convertEnvDataArrayToString(EnvData[] _envArr){
         try
         {
             JAXBContext jaxbContext = JAXBContext.newInstance(EnvData.class);
@@ -108,7 +105,7 @@ public class Environment extends Application {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
-            for (EnvData env : envArr) {
+            for (EnvData env : _envArr) {
                 jaxbMarshaller.marshal(env, sw);
             }
             String xmlContent = sw.toString();
@@ -121,10 +118,10 @@ public class Environment extends Application {
 
     /**
      * Converts an EnvData-object ot a xml string and returns the string
-     * @param env provides an EnvData object
+     * @param _env provides an EnvData object
      * @return an xml form of an EnvData
      */
-    private String convertEnvDataToString(EnvData env){
+    private String convertEnvDataToString(EnvData _env){
         try
         {
             JAXBContext jaxbContext = JAXBContext.newInstance(EnvData.class);
@@ -132,7 +129,7 @@ public class Environment extends Application {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
             StringWriter sw = new StringWriter();
-            jaxbMarshaller.marshal(env, sw);
+            jaxbMarshaller.marshal(_env, sw);
             String xmlContent = sw.toString();
             return xmlContent;
         } catch (JAXBException e) {
@@ -148,11 +145,11 @@ public class Environment extends Application {
      */
     public EnvData requestEnvironmentData(String _type){
         EnvData mData = new EnvData();
-        mData.sensortype = _type;
+        mData.mSensortype = _type;
         Timestamp mTimestamp = new Timestamp(System.currentTimeMillis());
-        mData.timestamp = mTimestamp.getTime();
+        mData.mTimestamp = mTimestamp.getTime();
         Random mRandom = new Random();
-        mData.sensorvalues.add(mRandom.nextInt(100)+1);
+        mData.mSensorvalues.add(mRandom.nextInt(100)+1);
         return mData;
     }
 
@@ -160,7 +157,7 @@ public class Environment extends Application {
      * this method is to fill a array with all supported objects
      */
     public void fillList(){
-        list[0] =(requestEnvironmentData("temperature"));
-        list[1] = (requestEnvironmentData("humidity"));
+        mList[0] =(requestEnvironmentData("temperature"));
+        mList[1] = (requestEnvironmentData("humidity"));
     }
 }
