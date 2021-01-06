@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="eclipselink">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/eclipselink.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/istack-commons-runtime-3.0.10.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/jakarta.json.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/jaxb-api-2.4.0-b180830.0359.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB--Libraries/jaxb-impl-2.4.0-b180830.0438.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

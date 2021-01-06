@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="gmbal-4.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/gmbal-4.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/istack-commons-runtime-3.0.10.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/javax.annotation-api-1.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/javax.jws-api-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/javax.xml.soap-api-1.4.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/jaxb-api-2.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/jaxb-runtime-2.3.3-b01.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/jaxws-api-2.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/jaxws-rt-2.3.3-b01.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/management-api-3.2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/pfl-basic-4.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/pfl-tf-4.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/policy-2.7.9.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/saaj-impl-1.5.2-b01.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/stax-ex-1.8.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/streambuffer-1.4.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXWS--Libraries/txw2-2.3.3-b01.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
