@@ -16,14 +16,25 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author Mario Eberth
+ * this class provides a Rest Based API with XML response
+ */
 @Path("/EnvironmentService")
 public class Environment extends Application {
     EnvData[] list = new EnvData[2];
 
+    /**
+     * empty constructor is not in use
+     */
     public Environment(){
 
     }
 
+    /**
+     * this method describe the API
+     * @return a html based overview
+     */
     @GET
     @Produces({"text/html"})
     public String getBasedOverview(){
@@ -42,6 +53,10 @@ public class Environment extends Application {
                 "</html>";
     }
 
+    /**
+     * this method provides all supportedSensors
+     * @return all supported Sensors
+     */
     @GET
     @Produces({"text/xml"})
     @Path("/sensors")
@@ -51,6 +66,11 @@ public class Environment extends Application {
                 " </eberth.Environment>";
     }
 
+    /**
+     * this method is to get a single EnvData object with the given name
+     * @param sensor is the given sensor request
+     * @return a EnvData object of the given sensor if supported
+     */
     @GET
     @Produces({"text/xml"})
     @Path("/{sensor}")
@@ -60,9 +80,12 @@ public class Environment extends Application {
         } else {
             return "";
         }
-
     }
 
+    /**
+     * this method is to get a List of all supported EnvData
+     * @return a xml formed list of all supported EnvData
+     */
     @GET
     @Produces(MediaType.APPLICATION_XML)
     @Path("/all")
@@ -72,8 +95,11 @@ public class Environment extends Application {
     }
 
 
-
-    //Converts an envData-Array to a xml string and returns the string
+    /**
+     * Converts an envData-Array to a xml string and returns the string
+     * @param envArr provides an Array of EnvData
+     * @return an xml form of an the EnvData array
+     */
     private String convertEnvDataArrayToString(EnvData[] envArr){
         try
         {
@@ -93,7 +119,11 @@ public class Environment extends Application {
         return null;
     }
 
-    //Converts an EnvData-object ot a xml string and returns the string
+    /**
+     * Converts an EnvData-object ot a xml string and returns the string
+     * @param env provides an EnvData object
+     * @return an xml form of an EnvData
+     */
     private String convertEnvDataToString(EnvData env){
         try
         {
@@ -111,6 +141,11 @@ public class Environment extends Application {
         return null;
     }
 
+    /**
+     * this method creates an EnvData object
+     * @param _type is the given sensor type
+     * @return a EnvData object
+     */
     public EnvData requestEnvironmentData(String _type){
         EnvData mData = new EnvData();
         mData.sensortype = _type;
@@ -121,6 +156,9 @@ public class Environment extends Application {
         return mData;
     }
 
+    /**
+     * this method is to fill a array with all supported objects
+     */
     public void fillList(){
         list[0] =(requestEnvironmentData("temperature"));
         list[1] = (requestEnvironmentData("humidity"));
