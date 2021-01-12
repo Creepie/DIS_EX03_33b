@@ -1,14 +1,14 @@
 package eberth;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.sql.Timestamp;
 import java.util.Random;
@@ -42,9 +42,10 @@ public class Environment extends Application {
                 "<h1> Welcome to API Rest for Environment Data </h1>" +
                 "<h2> <<<<< API calls responses in XML Format >>>>> </h2>" +
                 "<ul>" +
-                "<li> Path + /sensors for all supportedSensors </li>" +
-                "<li> Path + /{sensor} with a supported Sensor for a Sensor object </li>" +
-                "<li> Path + /all for a list with all supported Sensor objects </li>" +
+                "<li> GET Path + /sensors for all supportedSensors </li>" +
+                "<li> GET Path + /{sensor} with a supported Sensor for a Sensor object </li>" +
+                "<li> GET Path + /all for a list with all supported Sensor objects </li>" +
+                "<li> POST Path + /Values to send a Sensor Object to the server if response 200 all is ok </li>" +
                 "</ul>" +
                 "</body>" +
                 "</html>";
@@ -89,6 +90,41 @@ public class Environment extends Application {
     public String getBasedList(){
         fillList();
         return "<eberth.Environment>" + convertEnvDataArrayToString(mList) + "</eberth.Environment>";
+    }
+
+
+    /**
+     * this method is a post and convert a given XML String to an Object
+     * @param _data is the given XML
+     * @return 200 if conversion to EnvData is good
+     */
+    @POST
+    @Path("/Values")
+    @Consumes(MediaType.TEXT_XML)
+    @Produces(MediaType.TEXT_XML)
+    public String getPostObject(String _data){
+        EnvData data = convertToObject(_data);
+        if (data == null){
+            return "<Error> Error: cant un marshal </Error>";
+        } else {
+            return "<Status> 200 </Status>";
+        }
+    }
+
+    /**
+     * this method un marshal a xml to an EnvData object
+     * @param _xml is the given xml String
+     * @return the EnvData if ok > else return null
+     */
+    private EnvData convertToObject(String _xml){
+        try {
+            JAXBContext jc = JAXBContext.newInstance(EnvData.class);
+            Unmarshaller um = jc.createUnmarshaller();
+            return (EnvData) um.unmarshal(new StringReader(_xml));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
